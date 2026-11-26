@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>115 大會舞 — 冰原漂移舞＋香蕉恰恰 動作分解與音樂合練互動簡報</title>
+<style>
+  :root {
+    --cream:#FFFDF7; --navy:#0F172A; --slate:#1E293B; --text:#111827; --muted:#475569; --border:#CBD5E1;
+    --gold:#FACC15; --gold-soft:#FEF3C7;
+    --ice-main:#1D4ED8; --ice-accent:#2563EB; --ice-soft:#DBEAFE;
+    --banana-main:#A16207; --banana-accent:#CA8A04; --banana-soft:#FEF9C3;
+    --prac_slow-main:#0369A1; --prac_slow-accent:#0284C7; --prac_slow-soft:#E0F2FE;
+    --prac_full-main:#B91C1C; --prac_full-accent:#DC2626; --prac_full-soft:#FEE2E2;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html, body { height:100%; width:100%; overflow:hidden; font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif; background:#0B1220; color:var(--text); user-select:none; }
+  .app { display:flex; flex-direction:column; height:100vh; width:100vw; }
+  .stage-wrap { flex:1; min-height:0; display:flex; align-items:center; justify-content:center; padding:10px 14px 6px; }
+  .slide { width:100%; height:100%; max-width:1440px; max-height:820px; border-radius:16px; overflow:hidden; box-shadow:0 18px 50px rgba(0,0,0,.45); display:flex; flex-direction:column; background:var(--cream); position:relative; }
+  .slide.dark { background:var(--navy); color:#fff; }
+  .hdr { display:flex; align-items:center; gap:18px; padding:12px 24px; background:var(--theme-main); color:#fff; flex-shrink:0; }
+  .hdr-pill { background:#fff; color:var(--theme-main); font-weight:800; font-size:20px; padding:6px 20px; border-radius:999px; white-space:nowrap; }
+  .hdr-title { font-size:32px; font-weight:900; flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .hdr-prog { font-size:20px; font-weight:800; color:var(--gold-soft); white-space:nowrap; }
+  .hero-layout { flex:1; display:grid; grid-template-columns:1.05fr .95fr; gap:28px; padding:36px 44px; align-items:center; border-top:10px solid var(--gold); }
+  .hero-badge { display:inline-block; background:var(--gold); color:var(--navy); font-weight:900; font-size:20px; padding:8px 22px; border-radius:12px; margin-bottom:18px; }
+  .hero-h1 { font-size:54px; font-weight:900; line-height:1.15; margin-bottom:12px; }
+  .hero-sub { font-size:26px; font-weight:700; color:var(--gold-soft); margin-bottom:24px; }
+  .hero-card { display:flex; align-items:center; gap:16px; background:var(--slate); border:2.5px solid var(--gold); border-radius:14px; padding:14px 18px; margin-bottom:14px; cursor:pointer; transition:transform .15s, background .15s; }
+  .hero-card:hover { transform:translateY(-2px); background:#26354d; }
+  .hero-card.blue { border-color:#38BDF8; }
+  .hero-num { width:48px; height:48px; border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:24px; font-weight:900; color:var(--navy); background:var(--gold); }
+  .hero-card.blue .hero-num { background:#38BDF8; }
+  .hero-card h3 { font-size:22px; margin-bottom:4px; color:#fff; }
+  .hero-card p { font-size:16px; color:#CBD5E1; }
+  .hero-img-box { background:#fff; border:5px solid var(--gold); border-radius:18px; overflow:hidden; box-shadow:0 12px 30px rgba(0,0,0,.4); }
+  .hero-img-box { display:grid; grid-template-columns:1fr 1fr; }
+  .hero-img-box img { width:100%; display:block; }
+  .hero-img-cap { grid-column:1 / -1; }
+  .hero-img-cap { background:var(--slate); color:var(--gold-soft); text-align:center; font-size:24px; font-weight:800; padding:12px; }
+  .hero-actions { display:flex; gap:14px; margin-top:18px; flex-wrap:wrap; }
+  .big-cta { border:none; border-radius:12px; padding:14px 26px; font-size:21px; font-weight:900; cursor:pointer; font-family:inherit; transition:transform .12s, filter .12s; }
+  .big-cta:hover { transform:translateY(-2px); filter:brightness(1.06); }
+  .big-cta.primary { background:var(--gold); color:var(--navy); }
+  .big-cta.secondary { background:#38BDF8; color:var(--navy); }
+  .roadmap-body { flex:1; padding:18px 28px 22px; display:flex; flex-direction:column; gap:16px; min-height:0; }
+  .tip-banner { background:var(--gold-soft); border:2.5px solid var(--banana-accent); color:#78350F; font-size:23px; font-weight:900; text-align:center; padding:12px 18px; border-radius:14px; }
+  .rm-grid { flex:1; display:grid; grid-template-columns:repeat(4,1fr); gap:16px; min-height:0; }
+  .rm-col { background:#fff; border:3px solid var(--c-main); display:flex; flex-direction:column; overflow:hidden; }
+  .rm-col-hdr { background:var(--c-main); color:#fff; text-align:center; padding:14px 10px; }
+  .rm-col-hdr h3 { font-size:23px; font-weight:900; margin-bottom:4px; }
+  .rm-col-hdr p { font-size:16px; color:var(--gold-soft); font-weight:700; }
+  .rm-col-list { flex:1; padding:14px; display:flex; flex-direction:column; gap:10px; justify-content:space-around; }
+  .rm-item { background:var(--c-soft); border:2px solid transparent; border-radius:12px; padding:12px 10px; text-align:center; font-size:18px; font-weight:800; color:var(--text); cursor:pointer; transition:transform .12s, border-color .12s; }
+  .rm-item:hover { transform:scale(1.02); border-color:var(--c-main); }
+  .div-body { flex:1; display:flex; flex-direction:column; justify-content:center; padding:36px 60px; gap:18px; border-top:12px solid var(--theme-accent); border-bottom:12px solid var(--theme-accent); }
+  .div-badge { align-self:flex-start; background:var(--theme-accent); color:#fff; font-size:24px; font-weight:900; padding:8px 26px; border-radius:12px; }
+  .div-title { font-size:50px; font-weight:900; color:#fff; }
+  .div-sub { font-size:26px; font-weight:700; color:var(--gold-soft); margin-bottom:12px; }
+  .div-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+  .div-card { background:var(--slate); border:3px solid var(--theme-accent); border-radius:18px; padding:26px 18px; text-align:center; display:flex; flex-direction:column; align-items:center; gap:14px; }
+  .div-num { width:56px; height:56px; border-radius:50%; background:var(--theme-accent); color:#fff; font-size:26px; font-weight:900; display:flex; align-items:center; justify-content:center; }
+  .div-card-txt { font-size:25px; font-weight:800; line-height:1.4; white-space:pre-line; }
+  .move-body { flex:1; min-height:0; display:grid; grid-template-columns:.92fr 1.08fr; gap:20px; padding:16px 24px 12px; }
+  .prac-body { flex:1; min-height:0; display:grid; grid-template-columns:.6fr 1.4fr; gap:20px; padding:16px 24px 12px; }
+  .left-col { display:flex; flex-direction:column; gap:12px; min-height:0; }
+  .steps-card { background:#fff; border:2px solid var(--border); border-left:12px solid var(--theme-main); border-radius:14px; padding:14px 16px; display:flex; flex-direction:column; gap:10px; }
+  .step-row { display:flex; align-items:center; gap:14px; padding:6px 10px; border-radius:10px; cursor:pointer; transition:background .12s; }
+  .step-row:hover { background:#F1F5F9; }
+  .step-row.done { background:#ECFDF5; }
+  .step-row.done .step-txt { color:#065F46; }
+  .step-num { width:42px; height:42px; border-radius:50%; flex-shrink:0; background:var(--theme-main); color:#fff; font-size:21px; font-weight:900; display:flex; align-items:center; justify-content:center; }
+  .step-row.done .step-num { background:#16A34A; }
+  .step-txt { font-size:23px; font-weight:800; color:var(--text); line-height:1.25; }
+  .lyric-bar { background:var(--theme-soft); color:var(--theme-main); border-radius:10px; padding:8px 14px; font-size:17px; font-weight:800; margin-top:2px; }
+  .stills-label { font-size:17px; font-weight:800; color:var(--muted); }
+  .stills-row { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; flex:1; min-height:0; align-items:start; }
+  .still-btn { border:none; background:transparent; padding:0; cursor:zoom-in; border-radius:8px; overflow:hidden; transition:transform .12s; }
+  .still-btn:hover { transform:scale(1.03); }
+  .still-btn img { width:100%; display:block; border-radius:6px; }
+  .prac-card { background:#fff; border:2.5px solid var(--theme-main); display:flex; flex-direction:column; min-height:0; overflow:hidden; }
+  .prac-card-hdr { background:var(--theme-soft); color:var(--theme-main); text-align:center; font-size:20px; font-weight:900; padding:12px 10px; border-bottom:2px solid var(--theme-main); }
+  .prac-list { flex:1; padding:10px 12px; display:flex; flex-direction:column; gap:8px; justify-content:space-around; overflow-y:auto; }
+  .prac-item { background:#F8FAFC; border:1.5px solid var(--border); border-radius:10px; padding:10px 12px; font-size:18px; font-weight:800; color:var(--text); }
+  .prac-item.core { background:var(--gold-soft); color:#92400E; border-color:#F59E0B; }
+  .right-col { display:flex; flex-direction:column; gap:10px; min-height:0; justify-content:center; }
+  .cue-bar { display:flex; align-items:center; gap:12px; padding:8px 14px; background:var(--navy); border:3px solid var(--theme-main); border-bottom:none; border-radius:12px 12px 0 0; color:#FFFBEB; }
+  .cue-badge { background:#FACC15; color:var(--navy); font-weight:900; font-size:17px; padding:3px 12px; border-radius:8px; white-space:nowrap; }
+  .cue-text { font-size:23px; font-weight:900; flex:1; text-align:center; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .vid-shell { background:#000; border:3px solid var(--theme-main); border-radius:0 0 12px 12px; overflow:hidden; position:relative; width:100%; aspect-ratio:854 / 480; max-height:410px; margin:0 auto; }
+  .vid-shell video { width:100%; height:100%; display:block; object-fit:contain; cursor:pointer; }
+  .vid-shell.mirrored video { transform:scaleX(-1); }
+  /* 第一章影片自帶中文字幕，鏡像時字會反過來：蓋住下緣，改顯示未翻轉的即時口訣 */
+  .cap-cover { display:none; position:absolute; left:0; right:0; bottom:0; height:25%; background:linear-gradient(to top, rgba(15,23,42,1) 82%, rgba(15,23,42,0)); align-items:center; justify-content:center; color:#FFFBEB; font-size:24px; font-weight:900; pointer-events:none; }
+  .vid-shell.mirrored.has-burned .cap-cover { display:flex; }
+  .ctrl-bar { background:var(--navy); border-radius:12px; padding:10px 12px; display:flex; flex-wrap:wrap; gap:8px; align-items:center; justify-content:center; }
+  .cbtn { border:2px solid #334155; background:#1E293B; color:#fff; font-family:inherit; font-size:17px; font-weight:800; padding:9px 14px; border-radius:10px; cursor:pointer; transition:transform .1s, background .12s; display:inline-flex; align-items:center; gap:6px; }
+  .cbtn:hover { background:#334155; transform:translateY(-1px); }
+  .cbtn.play-main { background:var(--gold); color:var(--navy); border-color:var(--gold); font-size:18px; padding:9px 18px; }
+  .cbtn.active-green { background:#15803D; border-color:#4ADE80; color:#fff; }
+  .cbtn.active-purple { background:#7E22CE; border-color:#D8B4FE; color:#fff; }
+  .spd-group { display:inline-flex; gap:4px; background:#0B1220; padding:4px; border-radius:10px; }
+  .spd-btn { border:none; background:transparent; color:#CBD5E1; font-family:inherit; font-size:15px; font-weight:800; padding:6px 10px; border-radius:7px; cursor:pointer; }
+  .spd-btn.active { background:#38BDF8; color:var(--navy); }
+  .ctrl-note { text-align:center; font-size:14px; font-weight:700; color:var(--muted); }
+  .prog-track { height:8px; background:#E2E8F0; flex-shrink:0; }
+  .prog-fill { height:100%; background:var(--theme-accent); transition:width .25s; }
+  .nav-bar { height:62px; flex-shrink:0; background:#0F172A; border-top:2px solid #1E293B; display:flex; align-items:center; justify-content:space-between; padding:0 22px; gap:14px; color:#fff; }
+  .nav-btn { border:2px solid #475569; background:#1E293B; color:#fff; font-family:inherit; font-size:19px; font-weight:800; padding:9px 22px; border-radius:12px; cursor:pointer; transition:background .12s; }
+  .nav-btn:hover:not(:disabled) { background:#334155; border-color:var(--gold); }
+  .nav-btn:disabled { opacity:.35; cursor:not-allowed; }
+  .nav-btn.primary { background:var(--gold); color:var(--navy); border-color:var(--gold); }
+  .nav-mid { display:flex; align-items:center; gap:14px; }
+  .page-ind { font-size:19px; font-weight:800; color:var(--gold-soft); min-width:110px; text-align:center; }
+  .modal-bg { position:fixed; inset:0; background:rgba(0,0,0,.72); display:none; align-items:center; justify-content:center; z-index:99; padding:20px; }
+  .modal-bg.open { display:flex; }
+  .menu-panel { background:#0F172A; border:3px solid var(--gold); border-radius:18px; width:100%; max-width:920px; max-height:84vh; display:flex; flex-direction:column; overflow:hidden; color:#fff; }
+  .menu-hdr { display:flex; align-items:center; justify-content:space-between; padding:16px 22px; background:#1E293B; border-bottom:2px solid #334155; }
+  .menu-hdr h2 { font-size:24px; color:var(--gold); }
+  .menu-grid { padding:18px; display:grid; grid-template-columns:repeat(2,1fr); gap:10px; overflow-y:auto; }
+  .menu-item { text-align:left; border:2px solid #334155; background:#1E293B; color:#fff; padding:11px 14px; border-radius:10px; font-family:inherit; font-size:16px; font-weight:800; cursor:pointer; display:flex; align-items:center; gap:10px; }
+  .menu-item:hover { border-color:var(--gold); background:#26354d; }
+  .menu-item.curr { border-color:var(--gold); background:#A16207; }
+  .menu-pg { background:rgba(255,255,255,.16); padding:2px 8px; border-radius:6px; font-size:14px; min-width:40px; text-align:center; }
+  .lightbox-img { max-width:88vw; max-height:84vh; border:5px solid var(--gold); border-radius:14px; box-shadow:0 20px 60px rgba(0,0,0,.7); }
+  @media (max-width:1080px) { .hdr-title { font-size:24px; } .step-txt { font-size:19px; } .prac-item { font-size:15px; padding:7px 10px; } .hero-h1 { font-size:38px; } }
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="stage-wrap"><div id="slideRoot" class="slide"></div></div>
+  <div class="nav-bar">
+    <button id="btnPrev" class="nav-btn">⬅ 上一頁</button>
+    <div class="nav-mid">
+      <button id="btnMenu" class="nav-btn">📋 快速選頁</button>
+      <div id="pageInd" class="page-ind"></div>
+      <button id="btnFull" class="nav-btn">⛶ 全螢幕</button>
+    </div>
+    <button id="btnNext" class="nav-btn primary">下一頁 ➡</button>
+  </div>
+</div>
+<div id="menuModal" class="modal-bg"><div class="menu-panel">
+  <div class="menu-hdr"><h2 id="menuTitle">📋 快速跳轉目錄</h2><button id="btnCloseMenu" class="nav-btn">✕ 關閉</button></div>
+  <div id="menuGrid" class="menu-grid"></div>
+</div></div>
+<div id="lightboxModal" class="modal-bg"><img id="lightboxImg" class="lightbox-img" alt="分解動作放大圖"></div>
+
+<script>
+const SLIDES = [{"type": "cover", "group": "ice", "navTitle": "封面：115 大會舞"}, {"type": "roadmap", "group": "ice", "navTitle": "兩支舞地圖（點招式直達）"}, {"type": "divider", "group": "ice", "badge": "第一章・冰原漂移舞", "title": "跟喜德一起跳「冰原漂移舞」", "subtitle": "冰原歷險記喜德帶你跳・畫面有中文口訣，跟著唸就會跳！", "bullets": ["往前、往後\n各兩步", "往左、往右\n漂～移～", "交叉、跳跳、\n轉身驚落去"], "navTitle": "單元：第一章・冰原漂移舞"}, {"type": "move", "group": "ice", "badge": "冰原漂移舞", "title": "往前兩步・喜德的表情", "progress": "動作 1 / 8", "moveNum": 1, "moveTotal": 8, "steps": ["雙手握拳放在胸前", "身體微微前傾、往前走兩步", "學喜德張大嘴巴做表情"], "lyric": "往前兩步 喜德的表情", "stills": [{"img": "media/stills/A1_step1.jpg", "label": "握拳預備"}, {"img": "media/stills/A1_step2.jpg", "label": "往前踏步"}, {"img": "media/stills/A1_step3.jpg", "label": "前傾表情"}], "video": "media/clips/move_A1.mp4", "poster": "media/clips/poster_move_A1.jpg", "defaultLoop": true, "baseSpeedLabel": "0.75 倍慢速（內含 2 次循環）", "burned": true, "cues": [{"s": 0.0, "e": 3.6, "badge": "慢速第 1 次", "text": "前兩步：往前兩步・喜德的表情"}, {"s": 3.6, "e": 4.8, "badge": "休息 1 秒", "text": "準備再跟著練一次！"}, {"s": 4.8, "e": 9.6, "badge": "慢速第 2 次", "text": "前兩步：往前兩步・喜德的表情"}], "navTitle": "動作 01：往前兩步・喜德的表情"}, {"type": "move", "group": "ice", "badge": "冰原漂移舞", "title": "往後退兩步・喜德的表情", "progress": "動作 2 / 8", "moveNum": 2, "moveTotal": 8, "steps": ["身體站直、頭微微抬高", "往後退兩步", "雙手握拳、往身體兩側甩開"], "lyric": "後退兩步 喜德的表情", "stills": [{"img": "media/stills/A2_step1.jpg", "label": "站直抬頭"}, {"img": "media/stills/A2_step2.jpg", "label": "往後退"}, {"img": "media/stills/A2_step3.jpg", "label": "拳頭甩開"}], "video": "media/clips/move_A2.mp4", "poster": "media/clips/poster_move_A2.jpg", "defaultLoop": true, "baseSpeedLabel": "0.75 倍慢速（內含 2 次循環）", "burned": true, "cues": [{"s": 0.0, "e": 2.93, "badge": "慢速第 1 次", "text": "後退：往後退兩步・喜德的表情"}, {"s": 2.93, "e": 4.13, "badge": "休息 1 秒", "text": "準備再跟著練一次！"}, {"s": 4.13, "e": 8.27, "badge": "慢速第 2 次", "text": "後退：往後退兩步・喜德的表情"}], "navTitle": "動作 02：往後退兩步・喜德的表情"}, {"type": "move", "group": "ice", "badge": "冰原漂移舞", "title": "往左踏・漂～移～", "progress": "動作 3 / 8", "moveNum": 3, "moveTotal": 8, "steps": ["膝蓋彎一點點、重心放低", "往左踏一大步，像在冰上滑過去（漂～）", "另一隻腳併過來站好（移～）"], "lyric": "往左踏 漂～移～", "stills": [{"img": "media/stills/A3_step1.jpg", "label": "重心放低"}, {"img": "media/stills/A3_step2.jpg", "label": "往左滑步"}, {"img": "media/stills/A3_step3.jpg", "label": "併腳站好"}], "video": "media/clips/move_A3.mp4", "poster": "media/clips/poster_move_A3.jpg", "defaultLoop": true, "baseSpeedLabel": "0.75 倍慢速（內含 2 次循環）", "burned": true, "cues": [{"s": 0.0, "e": 3.47, "badge": "慢速第 1 次", "text": "往左踏：漂～移～"}, {"s": 3.47, "e": 4.67, "badge": "休息 1 秒", "text": "準備再跟著練一次！"}, {"s": 4.67, "e": 9.33, "badge": "慢速第 2 次", "text": "往左踏：漂～移～"}], "navTitle": "動作 03：往左踏・漂～移～"}, {"type": "move", "group": "ice", "badge": "冰原漂移舞", "title": "往右踏・再漂～移～", "progress": "動作 4 / 8", "moveNum": 4, "moveTotal": 8, "steps": ["膝蓋彎一點點、重心放低", "往右踏一大步，再滑過去（再漂～）", "另一隻腳併過來站好（移～）"], "lyric": "往右踏 再漂～移～", "stills": [{"img": "media/stills/A4_step1.jpg", "label": "重心放低"}, {"img": "media/stills/A4_step2.jpg", "label": "往右滑步"}, {"img": "media/stills/A4_step3.jpg", "label": "併腳站好"}], "video": "media/clips/move_A4.mp4", "poster": "media/clips/poster_move_A4.jpg", "defaultLoop": true, "baseSpeedLabel": "0.75 倍慢速（內含 2 次循環）", "burned": true, "cues": [{"s": 0.0, "e": 3.73, "badge": "慢速第 1 次", "text": "往右踏：再漂～移～"}, {"s": 3.73, "e": 4.93, "badge": "休息 1 秒", "text": "準備再跟著練一次！"}, {"s": 4.93, "e": 9.87, "badge": "慢速第 2 次", "text": "往右踏：再漂～移～"}], "navTitle": "動作 04：往右踏・再漂～移～"}, {"type": "move", "group": "ice", "badge": "冰原漂移舞", "title": "腳交叉・學學蠻尼", "progress": "動作 5 / 8", "moveNum": 5, "moveTotal": 8, "steps": ["兩隻腳交叉站好", "一隻手扶在頭旁邊", "另一隻手往外揮一揮，學蠻尼"], "lyric": "腳交叉 學學蠻尼", "stills": [{"img": "media/stills/A5_step1.jpg", "label": "腳交叉"}, {"img": "media/stills/A5_step2.jpg", "label": "手扶頭旁"}, {"img": "media/stills/A5_step3.jpg", "label": "另一手揮"}], "video": "media/clips/move_A5.mp4", "poster": "media/clips/poster_move_A5.jpg", "defaultLoop": true, "baseSpeedLabel": "0.75 倍慢速（內含 2 次循環）", "burned": true, "cues": [{"s": 0.0, "e": 3.07, "badge": "慢速第 1 次", "text": "腳交叉：學學蠻尼"}, {"s": 3.07, "e": 4.27, "badge": "休息 1 秒", "text": "準備再跟著練一次！"}, {"s": 4.27, "e": 8.53, "badge": "慢速第 2 次", "text": "腳交叉：學學蠻尼"}], "navTitle": "動作 05：腳交叉・學學蠻尼"}, {"type": "move", "group": "ice", "badge": "冰原漂移舞", "title": "再交叉・變成蠻尼", "progress": "動作 6 / 8", "moveNum": 6, "moveTotal": 8, "steps": ["換腳，再交叉一次", "雙手在頭的兩側擺姿勢", "身體扭一扭、做出可愛表情"], "lyric": "再交叉 變成蠻尼", "stills": [{"img": "media/stills/A6_step1.jpg", "label": "換腳交叉"}, {"img": "media/stills/A6_step2.jpg", "label": "頭旁擺手"}, {"img": "media/stills/A6_step3.jpg", "label": "扭身可愛"}], "video": "media/clips/move_A6.mp4", "poster": "media/clips/poster_move_A6.jpg", "defaultLoop": true, "baseSpeedLabel": "0.75 倍慢速（內含 2 次循環）", "burned": true, "cues": [{"s": 0.0, "e": 3.47, "badge": "慢速第 1 次", "text": "再交叉：變成蠻尼"}, {"s": 3.47, "e": 4.67, "badge": "休息 1 秒", "text": "準備再跟著練一次！"}, {"s": 4.67, "e": 9.33, "badge": "慢速第 2 次", "text": "再交叉：變成蠻尼"}], "navTitle": "動作 06：再交叉・變成蠻尼"}, {"type": "move", "group": "ice", "badge": "冰原漂移舞", "title": "跳！跳！扭扭手臂", "progress": "動作 7 / 8", "moveNum": 7, "moveTotal": 8, "steps": ["原地輕輕跳兩下（跳！跳！）", "雙手張開在胸前扭一扭", "膝蓋彎下、雙手收到身前"], "lyric": "跳！跳！ 扭扭手臂", "stills": [{"img": "media/stills/A7_step1.jpg", "label": "預備跳"}, {"img": "media/stills/A7_step2.jpg", "label": "手臂張開"}, {"img": "media/stills/A7_step3.jpg", "label": "彎膝收手"}], "video": "media/clips/move_A7.mp4", "poster": "media/clips/poster_move_A7.jpg", "defaultLoop": true, "baseSpeedLabel": "0.75 倍慢速（內含 2 次循環）", "burned": true, "cues": [{"s": 0.0, "e": 3.47, "badge": "慢速第 1 次", "text": "跳跳：扭扭手臂"}, {"s": 3.47, "e": 4.67, "badge": "休息 1 秒", "text": "準備再跟著練一次！"}, {"s": 4.67, "e": 9.33, "badge": "慢速第 2 次", "text": "跳跳：扭扭手臂"}], "navTitle": "動作 07：跳！跳！扭扭手臂"}, {"type": "move", "group": "ice", "badge": "冰原漂移舞", "title": "學阿嬤轉身・驚落去", "progress": "動作 8 / 8", "moveNum": 8, "moveTotal": 8, "steps": ["身體轉向旁邊一點點", "像阿嬤一樣彎腰、膝蓋彎彎", "屁股往後翹一翹"], "lyric": "學阿嬤轉身驚落去", "stills": [{"img": "media/stills/A8_step1.jpg", "label": "轉身預備"}, {"img": "media/stills/A8_step2.jpg", "label": "彎腰彎膝"}, {"img": "media/stills/A8_step3.jpg", "label": "屁股翹翹"}], "video": "media/clips/move_A8.mp4", "poster": "media/clips/poster_move_A8.jpg", "defaultLoop": true, "baseSpeedLabel": "0.75 倍慢速（內含 2 次循環）", "burned": true, "cues": [{"s": 0.0, "e": 3.2, "badge": "慢速第 1 次", "text": "轉身：學阿嬤轉身驚落去"}, {"s": 3.2, "e": 4.4, "badge": "休息 1 秒", "text": "準備再跟著練一次！"}, {"s": 4.4, "e": 8.8, "badge": "慢速第 2 次", "text": "轉身：學阿嬤轉身驚落去"}], "navTitle": "動作 08：學阿嬤轉身・驚落去"}, {"type": "divider", "group": "banana", "badge": "第二章・香蕉恰恰", "title": "跟 Pororo 一起跳「香蕉恰恰」", "subtitle": "韓文歌・原片沒有中文口訣，口訣由老師版自編，建議先看動作再跟著跳", "bullets": ["屋頂手、香蕉搖搖\n舉手揮一揮", "左右踢踢、大 Y 手\n小火車向前衝", "單腳踢、扭扭腰\n最後蹲下擺姿勢"], "navTitle": "單元：第二章・香蕉恰恰"}, {"type": "move", "group": "banana", "badge": "香蕉恰恰", "title": "屋頂手・BA-NA-NA", "progress": "動作 1 / 9", "moveNum": 1, "moveTotal": 9, "steps": ["雙腳站好、膝蓋輕輕彈", "雙手舉到頭上、指尖碰指尖", "手臂撐成小屋頂（像香蕉尖尖）"], "lyric": "BA～NA～NA～（香蕉）", "stills": [{"img": "media/stills/B1_step1.jpg", "label": "站好預備"}, {"img": "media/stills/B1_step2.jpg", "label": "舉手碰指尖"}, {"img": "media/stills/B1_step3.jpg", "label": "屋頂手勢"}], "video": "media/clips/move_B1.mp4", "poster": "media/clips/poster_move_B1.jpg", "defaultLoop": true, "baseSpeedLabel": "0.75 倍慢速（內含 2 次循環）", "burned": false, "cues": [{"s": 0.0, "e": 2.27, "badge": "慢速第 1 次", "text": "屋頂手：BA-NA-NA"}, {"s": 2.27, "e": 3.47, "badge": "休息 1 秒", "text": "準備再跟著練一次！"}, {"s": 3.47, "e": 6.93, "badge": "慢速第 2 次", "text": "屋頂手：BA-NA-NA"}], "navTitle": "動作 01：屋頂手・BA-NA-NA"}, {"type": "move", "group": "banana", "badge": "香蕉恰恰", "title": "香蕉搖搖・左右搖", "progress": "動作 2 / 9", "moveNum": 2, "moveTotal": 9, "steps": ["雙腳打開、膝蓋一彈一彈", "雙手放在腰旁、跟著身體往旁邊搖", "左右小步移動（左、右、左、右）"], "lyric": "BANANA！", "stills": [{"img": "media/stills/B2_step1.jpg", "label": "膝蓋彈彈"}, {"img": "media/stills/B2_step2.jpg", "label": "往左搖"}, {"img": "media/stills/B2_step3.jpg", "label": "往右搖"}], "video": "media/clips/move_B2.mp4", "poster": "media/clips/poster_move_B2.jpg", "defaultLoop": true, "baseSpeedLabel": "0.75 倍慢速（內含 2 次循環）", "burned": false, "cues": [{"s": 0.0, "e": 5.07, "badge": "慢速第 1 次", "text": "香蕉搖搖：左右搖"}, {"s": 5.07, "e": 6.27, "badge": "休息 1 秒", "text": "準備再跟著練一次！"}, {"s": 6.27, "e": 12.53, "badge": "慢速第 2 次", "text": "香蕉搖搖：左右搖"}], "navTitle": "動作 02：香蕉搖搖・左右搖"}, {"type": "move", "group": "banana", "badge": "香蕉恰恰", "title": "雙手舉高・揮一揮", "progress": "動作 3 / 9", "moveNum": 3, "moveTotal": 9, "steps": ["膝蓋彈一彈、雙手在胸前", "雙手同時高高舉起、像字母 V", "在頭上左右揮一揮"], "lyric": "Cha！Cha！", "stills": [{"img": "media/stills/B3_step1.jpg", "label": "胸前預備"}, {"img": "media/stills/B3_step2.jpg", "label": "舉成 V"}, {"img": "media/stills/B3_step3.jpg", "label": "頭上揮揮"}], "video": "media/clips/move_B3.mp4", "poster": "media/clips/poster_move_B3.jpg", "defaultLoop": true, "baseSpeedLabel": "0.75 倍慢速（內含 2 次循環）", "burned": false, "cues": [{"s": 0.0, "e": 3.07, "badge": "慢速第 1 次", "text": "舉手揮揮：舉成 V"}, {"s": 3.07, "e": 4.27, "badge": "休息 1 秒", "text": "準備再跟著練一次！"}, {"s": 4.27, "e": 8.53, "badge": "慢速第 2 次", "text": "舉手揮揮：舉成 V"}], "navTitle": "動作 03：雙手舉高・揮一揮"}, {"type": "move", "group": "banana", "badge": "香蕉恰恰", "title": "左右踢踢・搖搖手", "progress": "動作 4 / 9", "moveNum": 4, "moveTotal": 9, "steps": ["雙手往身體兩側張開", "一隻腳往旁邊輕輕踢出去", "換另一隻腳踢，手跟著揮一揮"], "lyric": "BANANA！ CHA！CHA！", "stills": [{"img": "media/stills/B4_step1.jpg", "label": "右腳踢出"}, {"img": "media/stills/B4_step2.jpg", "label": "換左腳踢"}, {"img": "media/stills/B4_step3.jpg", "label": "再換右腳"}], "video": "media/clips/move_B4.mp4", "poster": "media/clips/poster_move_B4.jpg", "defaultLoop": true, "baseSpeedLabel": "0.75 倍慢速（內含 2 次循環）", "burned": false, "cues": [{"s": 0.0, "e": 5.73, "badge": "慢速第 1 次", "text": "左右踢踢：搖搖手"}, {"s": 5.73, "e": 6.93, "badge": "休息 1 秒", "text": "準備再跟著練一次！"}, {"s": 6.93, "e": 13.87, "badge": "慢速第 2 次", "text": "左右踢踢：搖搖手"}], "navTitle": "動作 04：左右踢踢・搖搖手"}, {"type": "move", "group": "banana", "badge": "香蕉恰恰", "title": "大 Y 手・Hoo～", "progress": "動作 5 / 9", "moveNum": 5, "moveTotal": 9, "steps": ["雙腳打開站穩", "雙手大大舉高、張開像字母 Y", "手指向斜上方，喊一聲 Hoo～"], "lyric": "Hoo～！", "stills": [{"img": "media/stills/B5_step1.jpg", "label": "站穩預備"}, {"img": "media/stills/B5_step2.jpg", "label": "舉成 Y"}, {"img": "media/stills/B5_step3.jpg", "label": "斜指 Hoo"}], "video": "media/clips/move_B5.mp4", "poster": "media/clips/poster_move_B5.jpg", "defaultLoop": true, "baseSpeedLabel": "0.75 倍慢速（內含 2 次循環）", "burned": false, "cues": [{"s": 0.0, "e": 3.6, "badge": "慢速第 1 次", "text": "大 Y 手：Hoo～"}, {"s": 3.6, "e": 4.8, "badge": "休息 1 秒", "text": "準備再跟著練一次！"}, {"s": 4.8, "e": 9.6, "badge": "慢速第 2 次", "text": "大 Y 手：Hoo～"}], "navTitle": "動作 05：大 Y 手・Hoo～"}, {"type": "move", "group": "banana", "badge": "香蕉恰恰", "title": "小火車・向前衝", "progress": "動作 6 / 9", "moveNum": 6, "moveTotal": 9, "steps": ["身體微微前傾、排成一排", "雙手往前伸，像小火車一格一格推進", "最後一隻手斜斜指向天空"], "lyric": "（火車出發）", "stills": [{"img": "media/stills/B6_step1.jpg", "label": "前傾預備"}, {"img": "media/stills/B6_step2.jpg", "label": "手往前推"}, {"img": "media/stills/B6_step3.jpg", "label": "斜指天空"}], "video": "media/clips/move_B6.mp4", "poster": "media/clips/poster_move_B6.jpg", "defaultLoop": true, "baseSpeedLabel": "0.75 倍慢速（內含 2 次循環）", "burned": false, "cues": [{"s": 0.0, "e": 4.8, "badge": "慢速第 1 次", "text": "小火車：向前衝"}, {"s": 4.8, "e": 6.0, "badge": "休息 1 秒", "text": "準備再跟著練一次！"}, {"s": 6.0, "e": 12.0, "badge": "慢速第 2 次", "text": "小火車：向前衝"}], "navTitle": "動作 06：小火車・向前衝"}, {"type": "move", "group": "banana", "badge": "香蕉恰恰", "title": "單腳踢・小翅膀手", "progress": "動作 7 / 9", "moveNum": 7, "moveTotal": 9, "steps": ["雙手舉到耳朵旁，像小翅膀", "抬起一隻腳、同一邊的手舉高", "腳往後踢、換邊再來一次"], "lyric": "으랏～ 차차차！", "stills": [{"img": "media/stills/B7_step1.jpg", "label": "翅膀手"}, {"img": "media/stills/B7_step2.jpg", "label": "抬腳舉手"}, {"img": "media/stills/B7_step3.jpg", "label": "腳往後踢"}], "video": "media/clips/move_B7.mp4", "poster": "media/clips/poster_move_B7.jpg", "defaultLoop": true, "baseSpeedLabel": "0.75 倍慢速（內含 2 次循環）", "burned": false, "cues": [{"s": 0.0, "e": 4.27, "badge": "慢速第 1 次", "text": "單腳踢：小翅膀手"}, {"s": 4.27, "e": 5.47, "badge": "休息 1 秒", "text": "準備再跟著練一次！"}, {"s": 5.47, "e": 10.93, "badge": "慢速第 2 次", "text": "單腳踢：小翅膀手"}], "navTitle": "動作 07：單腳踢・小翅膀手"}, {"type": "move", "group": "banana", "badge": "香蕉恰恰", "title": "扭扭腰・Yeah！", "progress": "動作 8 / 9", "moveNum": 8, "moveTotal": 9, "steps": ["膝蓋彎彎、雙手放在身體兩側", "屁股左右扭一扭", "雙手向外張開，開心喊 Yeah！"], "lyric": "할머니도～ 할아버지도～（奶奶也、爺爺也）", "stills": [{"img": "media/stills/B8_step1.jpg", "label": "彎膝預備"}, {"img": "media/stills/B8_step2.jpg", "label": "喊 Yeah"}, {"img": "media/stills/B8_step3.jpg", "label": "扭腰"}], "video": "media/clips/move_B8.mp4", "poster": "media/clips/poster_move_B8.jpg", "defaultLoop": true, "baseSpeedLabel": "0.75 倍慢速（內含 2 次循環）", "burned": false, "cues": [{"s": 0.0, "e": 5.73, "badge": "慢速第 1 次", "text": "扭扭腰：Yeah！"}, {"s": 5.73, "e": 6.93, "badge": "休息 1 秒", "text": "準備再跟著練一次！"}, {"s": 6.93, "e": 13.87, "badge": "慢速第 2 次", "text": "扭扭腰：Yeah！"}], "navTitle": "動作 08：扭扭腰・Yeah！"}, {"type": "move", "group": "banana", "badge": "香蕉恰恰", "title": "蹲下・OKAY 擺姿勢！", "progress": "動作 9 / 9", "moveNum": 9, "moveTotal": 9, "steps": ["雙手往兩旁張開", "蹲下來，圍在波羅羅旁邊", "雙手放在臉旁擺姿勢，笑一個！"], "lyric": "O.K.AY！", "stills": [{"img": "media/stills/B9_step1.jpg", "label": "張開雙手"}, {"img": "media/stills/B9_step2.jpg", "label": "蹲下圍圈"}, {"img": "media/stills/B9_step3.jpg", "label": "臉旁擺姿勢"}], "video": "media/clips/move_B9.mp4", "poster": "media/clips/poster_move_B9.jpg", "defaultLoop": true, "baseSpeedLabel": "0.75 倍慢速（內含 2 次循環）", "burned": false, "cues": [{"s": 0.0, "e": 6.93, "badge": "慢速第 1 次", "text": "結尾：蹲下擺姿勢"}, {"s": 6.93, "e": 8.13, "badge": "休息 1 秒", "text": "準備再跟著練一次！"}, {"s": 8.13, "e": 16.27, "badge": "慢速第 2 次", "text": "結尾：蹲下擺姿勢"}], "navTitle": "動作 09：蹲下・OKAY 擺姿勢！"}, {"type": "divider", "group": "prac_full", "badge": "音樂合練", "title": "跟著音樂一起動起來！", "subtitle": "每支舞都有「慢速暖身」與「原速過關」，先慢後快最穩！", "bullets": ["一輪／副歌分段\n0.8 倍慢速暖身", "一輪／副歌分段\n1.0 倍原速過關", "完整版挑戰\n慢速 → 原速！"], "navTitle": "單元：音樂合練"}, {"type": "practice", "group": "prac_slow", "badge": "0.8 倍慢速暖身", "title": "冰原漂移舞・喜德一輪（慢速暖身）", "progress": "合練 1 / 10", "pracNum": 1, "pracTotal": 10, "listTitle": "喜德一輪 8 招（照順序跳）", "items": [{"core": true, "text": "① 往前兩步・喜德的表情"}, {"core": true, "text": "② 往後退兩步"}, {"core": false, "text": "③ 往左踏・漂～移～"}, {"core": false, "text": "④ 往右踏・再漂～移～"}, {"core": false, "text": "⑤ 腳交叉・學學蠻尼"}, {"core": false, "text": "⑥ 再交叉・變成蠻尼"}, {"core": true, "text": "⑦ 跳！跳！扭扭手臂"}, {"core": true, "text": "⑧ 學阿嬤轉身・驚落去"}], "video": "media/clips/prac_A1_slow.mp4", "poster": "media/clips/poster_prac_A1_slow.jpg", "durationLabel": "約 24 秒", "burned": true, "cues": [{"s": 0.13, "e": 3.25, "badge": "動作提示", "text": "第 1 輪・1. 往前兩步・喜德的表情"}, {"s": 3.25, "e": 5.87, "badge": "動作提示", "text": "第 1 輪・2. 往後退兩步・喜德的表情"}, {"s": 5.87, "e": 8.88, "badge": "動作提示", "text": "第 1 輪・3. 往左踏・漂～移～"}, {"s": 8.88, "e": 12.12, "badge": "動作提示", "text": "第 1 輪・4. 往右踏・再漂～移～"}, {"s": 12.12, "e": 14.75, "badge": "動作提示", "text": "第 1 輪・5. 腳交叉・學學蠻尼"}, {"s": 14.75, "e": 17.75, "badge": "動作提示", "text": "第 1 輪・6. 再交叉・變成蠻尼"}, {"s": 17.75, "e": 20.75, "badge": "動作提示", "text": "第 1 輪・7. 跳！跳！扭扭手臂"}, {"s": 20.75, "e": 23.5, "badge": "動作提示", "text": "第 1 輪・8. 學阿嬤轉身・驚落去"}, {"s": 23.5, "e": 23.75, "badge": "動作提示", "text": "第 2 輪・1. 往前兩步・喜德的表情"}], "navTitle": "合練 1：冰原漂移舞・喜德一輪（慢速暖身）"}, {"type": "practice", "group": "prac_full", "badge": "1.0 倍原速挑戰", "title": "冰原漂移舞・喜德一輪（原速過關）", "progress": "合練 2 / 10", "pracNum": 2, "pracTotal": 10, "listTitle": "喜德一輪 8 招（照順序跳）", "items": [{"core": true, "text": "① 往前兩步・喜德的表情"}, {"core": true, "text": "② 往後退兩步"}, {"core": false, "text": "③ 往左踏・漂～移～"}, {"core": false, "text": "④ 往右踏・再漂～移～"}, {"core": false, "text": "⑤ 腳交叉・學學蠻尼"}, {"core": false, "text": "⑥ 再交叉・變成蠻尼"}, {"core": true, "text": "⑦ 跳！跳！扭扭手臂"}, {"core": true, "text": "⑧ 學阿嬤轉身・驚落去"}], "video": "media/clips/prac_A1_full.mp4", "poster": "media/clips/poster_prac_A1_full.jpg", "durationLabel": "約 19 秒", "burned": true, "cues": [{"s": 0.1, "e": 2.6, "badge": "動作提示", "text": "第 1 輪・1. 往前兩步・喜德的表情"}, {"s": 2.6, "e": 4.7, "badge": "動作提示", "text": "第 1 輪・2. 往後退兩步・喜德的表情"}, {"s": 4.7, "e": 7.1, "badge": "動作提示", "text": "第 1 輪・3. 往左踏・漂～移～"}, {"s": 7.1, "e": 9.7, "badge": "動作提示", "text": "第 1 輪・4. 往右踏・再漂～移～"}, {"s": 9.7, "e": 11.8, "badge": "動作提示", "text": "第 1 輪・5. 腳交叉・學學蠻尼"}, {"s": 11.8, "e": 14.2, "badge": "動作提示", "text": "第 1 輪・6. 再交叉・變成蠻尼"}, {"s": 14.2, "e": 16.6, "badge": "動作提示", "text": "第 1 輪・7. 跳！跳！扭扭手臂"}, {"s": 16.6, "e": 18.8, "badge": "動作提示", "text": "第 1 輪・8. 學阿嬤轉身・驚落去"}, {"s": 18.8, "e": 19.0, "badge": "動作提示", "text": "第 2 輪・1. 往前兩步・喜德的表情"}], "navTitle": "合練 2：冰原漂移舞・喜德一輪（原速過關）"}, {"type": "practice", "group": "prac_slow", "badge": "0.8 倍慢速暖身", "title": "冰原漂移舞・完整版（慢速暖身）", "progress": "合練 3 / 10", "pracNum": 3, "pracTotal": 10, "listTitle": "開場 → 一輪 8 招 × 5 輪", "items": [{"core": false, "text": "開場：跟喜德打招呼、站好"}, {"core": true, "text": "第 1 輪：8 招（喜德示範）"}, {"core": false, "text": "第 2～4 輪：各國朋友一起跳"}, {"core": true, "text": "第 5 輪：再跳 8 招收尾"}], "video": "media/clips/prac_A2_slow.mp4", "poster": "media/clips/poster_prac_A2_slow.jpg", "durationLabel": "約 1 分 59 秒", "burned": true, "cues": [{"s": 0.0, "e": 19.12, "badge": "動作提示", "text": "【開場】喜德說：舉起手、準備好身體"}, {"s": 19.12, "e": 22.25, "badge": "動作提示", "text": "第 1 輪・1. 往前兩步・喜德的表情"}, {"s": 22.25, "e": 24.87, "badge": "動作提示", "text": "第 1 輪・2. 往後退兩步・喜德的表情"}, {"s": 24.87, "e": 27.88, "badge": "動作提示", "text": "第 1 輪・3. 往左踏・漂～移～"}, {"s": 27.88, "e": 31.12, "badge": "動作提示", "text": "第 1 輪・4. 往右踏・再漂～移～"}, {"s": 31.12, "e": 33.75, "badge": "動作提示", "text": "第 1 輪・5. 腳交叉・學學蠻尼"}, {"s": 33.75, "e": 36.75, "badge": "動作提示", "text": "第 1 輪・6. 再交叉・變成蠻尼"}, {"s": 36.75, "e": 39.75, "badge": "動作提示", "text": "第 1 輪・7. 跳！跳！扭扭手臂"}, {"s": 39.75, "e": 42.5, "badge": "動作提示", "text": "第 1 輪・8. 學阿嬤轉身・驚落去"}, {"s": 42.5, "e": 45.62, "badge": "動作提示", "text": "第 2 輪・1. 往前兩步・喜德的表情"}, {"s": 45.62, "e": 48.25, "badge": "動作提示", "text": "第 2 輪・2. 往後退兩步・喜德的表情"}, {"s": 48.25, "e": 51.25, "badge": "動作提示", "text": "第 2 輪・3. 往左踏・漂～移～"}, {"s": 51.25, "e": 54.5, "badge": "動作提示", "text": "第 2 輪・4. 往右踏・再漂～移～"}, {"s": 54.5, "e": 57.12, "badge": "動作提示", "text": "第 2 輪・5. 腳交叉・學學蠻尼"}, {"s": 57.12, "e": 60.12, "badge": "動作提示", "text": "第 2 輪・6. 再交叉・變成蠻尼"}, {"s": 60.12, "e": 63.12, "badge": "動作提示", "text": "第 2 輪・7. 跳！跳！扭扭手臂"}, {"s": 63.12, "e": 65.88, "badge": "動作提示", "text": "第 2 輪・8. 學阿嬤轉身・驚落去"}, {"s": 66.25, "e": 69.38, "badge": "動作提示", "text": "第 3 輪・1. 往前兩步・喜德的表情"}, {"s": 69.38, "e": 72.0, "badge": "動作提示", "text": "第 3 輪・2. 往後退兩步・喜德的表情"}, {"s": 72.0, "e": 75.0, "badge": "動作提示", "text": "第 3 輪・3. 往左踏・漂～移～"}, {"s": 75.0, "e": 78.25, "badge": "動作提示", "text": "第 3 輪・4. 往右踏・再漂～移～"}, {"s": 78.25, "e": 80.88, "badge": "動作提示", "text": "第 3 輪・5. 腳交叉・學學蠻尼"}, {"s": 80.88, "e": 83.87, "badge": "動作提示", "text": "第 3 輪・6. 再交叉・變成蠻尼"}, {"s": 83.87, "e": 86.88, "badge": "動作提示", "text": "第 3 輪・7. 跳！跳！扭扭手臂"}, {"s": 86.88, "e": 89.62, "badge": "動作提示", "text": "第 3 輪・8. 學阿嬤轉身・驚落去"}, {"s": 90.62, "e": 93.75, "badge": "動作提示", "text": "第 4 輪・1. 往前兩步・喜德的表情"}, {"s": 93.75, "e": 96.37, "badge": "動作提示", "text": "第 4 輪・2. 往後退兩步・喜德的表情"}, {"s": 96.37, "e": 99.38, "badge": "動作提示", "text": "第 4 輪・3. 往左踏・漂～移～"}, {"s": 99.38, "e": 102.62, "badge": "動作提示", "text": "第 4 輪・4. 往右踏・再漂～移～"}, {"s": 102.62, "e": 105.25, "badge": "動作提示", "text": "第 4 輪・5. 腳交叉・學學蠻尼"}, {"s": 105.25, "e": 108.25, "badge": "動作提示", "text": "第 4 輪・6. 再交叉・變成蠻尼"}, {"s": 108.25, "e": 111.25, "badge": "動作提示", "text": "第 4 輪・7. 跳！跳！扭扭手臂"}, {"s": 111.25, "e": 114.0, "badge": "動作提示", "text": "第 4 輪・8. 學阿嬤轉身・驚落去"}, {"s": 114.12, "e": 117.25, "badge": "動作提示", "text": "第 5 輪・1. 往前兩步・喜德的表情"}, {"s": 117.25, "e": 118.75, "badge": "動作提示", "text": "第 5 輪・2. 往後退兩步・喜德的表情"}], "navTitle": "合練 3：冰原漂移舞・完整版（慢速暖身）"}, {"type": "practice", "group": "prac_full", "badge": "1.0 倍原速挑戰", "title": "冰原漂移舞・完整版（原速挑戰）", "progress": "合練 4 / 10", "pracNum": 4, "pracTotal": 10, "listTitle": "開場 → 一輪 8 招 × 5 輪", "items": [{"core": false, "text": "開場：跟喜德打招呼、站好"}, {"core": true, "text": "第 1 輪：8 招（喜德示範）"}, {"core": false, "text": "第 2～4 輪：各國朋友一起跳"}, {"core": true, "text": "第 5 輪：再跳 8 招收尾"}], "video": "media/clips/prac_A2_full.mp4", "poster": "media/clips/poster_prac_A2_full.jpg", "durationLabel": "約 1 分 35 秒", "burned": true, "cues": [{"s": 0.0, "e": 15.3, "badge": "動作提示", "text": "【開場】喜德說：舉起手、準備好身體"}, {"s": 15.3, "e": 17.8, "badge": "動作提示", "text": "第 1 輪・1. 往前兩步・喜德的表情"}, {"s": 17.8, "e": 19.9, "badge": "動作提示", "text": "第 1 輪・2. 往後退兩步・喜德的表情"}, {"s": 19.9, "e": 22.3, "badge": "動作提示", "text": "第 1 輪・3. 往左踏・漂～移～"}, {"s": 22.3, "e": 24.9, "badge": "動作提示", "text": "第 1 輪・4. 往右踏・再漂～移～"}, {"s": 24.9, "e": 27.0, "badge": "動作提示", "text": "第 1 輪・5. 腳交叉・學學蠻尼"}, {"s": 27.0, "e": 29.4, "badge": "動作提示", "text": "第 1 輪・6. 再交叉・變成蠻尼"}, {"s": 29.4, "e": 31.8, "badge": "動作提示", "text": "第 1 輪・7. 跳！跳！扭扭手臂"}, {"s": 31.8, "e": 34.0, "badge": "動作提示", "text": "第 1 輪・8. 學阿嬤轉身・驚落去"}, {"s": 34.0, "e": 36.5, "badge": "動作提示", "text": "第 2 輪・1. 往前兩步・喜德的表情"}, {"s": 36.5, "e": 38.6, "badge": "動作提示", "text": "第 2 輪・2. 往後退兩步・喜德的表情"}, {"s": 38.6, "e": 41.0, "badge": "動作提示", "text": "第 2 輪・3. 往左踏・漂～移～"}, {"s": 41.0, "e": 43.6, "badge": "動作提示", "text": "第 2 輪・4. 往右踏・再漂～移～"}, {"s": 43.6, "e": 45.7, "badge": "動作提示", "text": "第 2 輪・5. 腳交叉・學學蠻尼"}, {"s": 45.7, "e": 48.1, "badge": "動作提示", "text": "第 2 輪・6. 再交叉・變成蠻尼"}, {"s": 48.1, "e": 50.5, "badge": "動作提示", "text": "第 2 輪・7. 跳！跳！扭扭手臂"}, {"s": 50.5, "e": 52.7, "badge": "動作提示", "text": "第 2 輪・8. 學阿嬤轉身・驚落去"}, {"s": 53.0, "e": 55.5, "badge": "動作提示", "text": "第 3 輪・1. 往前兩步・喜德的表情"}, {"s": 55.5, "e": 57.6, "badge": "動作提示", "text": "第 3 輪・2. 往後退兩步・喜德的表情"}, {"s": 57.6, "e": 60.0, "badge": "動作提示", "text": "第 3 輪・3. 往左踏・漂～移～"}, {"s": 60.0, "e": 62.6, "badge": "動作提示", "text": "第 3 輪・4. 往右踏・再漂～移～"}, {"s": 62.6, "e": 64.7, "badge": "動作提示", "text": "第 3 輪・5. 腳交叉・學學蠻尼"}, {"s": 64.7, "e": 67.1, "badge": "動作提示", "text": "第 3 輪・6. 再交叉・變成蠻尼"}, {"s": 67.1, "e": 69.5, "badge": "動作提示", "text": "第 3 輪・7. 跳！跳！扭扭手臂"}, {"s": 69.5, "e": 71.7, "badge": "動作提示", "text": "第 3 輪・8. 學阿嬤轉身・驚落去"}, {"s": 72.5, "e": 75.0, "badge": "動作提示", "text": "第 4 輪・1. 往前兩步・喜德的表情"}, {"s": 75.0, "e": 77.1, "badge": "動作提示", "text": "第 4 輪・2. 往後退兩步・喜德的表情"}, {"s": 77.1, "e": 79.5, "badge": "動作提示", "text": "第 4 輪・3. 往左踏・漂～移～"}, {"s": 79.5, "e": 82.1, "badge": "動作提示", "text": "第 4 輪・4. 往右踏・再漂～移～"}, {"s": 82.1, "e": 84.2, "badge": "動作提示", "text": "第 4 輪・5. 腳交叉・學學蠻尼"}, {"s": 84.2, "e": 86.6, "badge": "動作提示", "text": "第 4 輪・6. 再交叉・變成蠻尼"}, {"s": 86.6, "e": 89.0, "badge": "動作提示", "text": "第 4 輪・7. 跳！跳！扭扭手臂"}, {"s": 89.0, "e": 91.2, "badge": "動作提示", "text": "第 4 輪・8. 學阿嬤轉身・驚落去"}, {"s": 91.3, "e": 93.8, "badge": "動作提示", "text": "第 5 輪・1. 往前兩步・喜德的表情"}, {"s": 93.8, "e": 95.0, "badge": "動作提示", "text": "第 5 輪・2. 往後退兩步・喜德的表情"}], "navTitle": "合練 4：冰原漂移舞・完整版（原速挑戰）"}, {"type": "practice", "group": "prac_slow", "badge": "0.8 倍慢速暖身", "title": "香蕉恰恰・副歌 1（慢速暖身）", "progress": "合練 5 / 10", "pracNum": 5, "pracTotal": 10, "listTitle": "副歌 1：動作 2～5", "items": [{"core": false, "text": "② 香蕉搖搖・左右搖"}, {"core": false, "text": "③ 雙手舉高・揮一揮"}, {"core": true, "text": "④ 左右踢踢・搖搖手"}, {"core": false, "text": "⑤ 大 Y 手・Hoo～"}], "video": "media/clips/prac_B1_slow.mp4", "poster": "media/clips/poster_prac_B1_slow.jpg", "durationLabel": "約 21 秒", "burned": false, "cues": [{"s": 0.0, "e": 3.0, "badge": "動作提示", "text": "【預備】腳打開、膝蓋彈一彈"}, {"s": 3.0, "e": 7.88, "badge": "動作提示", "text": "② 香蕉搖搖：左右搖"}, {"s": 7.88, "e": 11.13, "badge": "動作提示", "text": "③ 雙手舉高・揮一揮"}, {"s": 11.13, "e": 16.63, "badge": "動作提示", "text": "④ 左右踢踢・搖搖手"}, {"s": 16.63, "e": 20.62, "badge": "動作提示", "text": "⑤ 大 Y 手：Hoo～"}], "navTitle": "合練 5：香蕉恰恰・副歌 1（慢速暖身）"}, {"type": "practice", "group": "prac_full", "badge": "1.0 倍原速挑戰", "title": "香蕉恰恰・副歌 1（原速過關）", "progress": "合練 6 / 10", "pracNum": 6, "pracTotal": 10, "listTitle": "副歌 1：動作 2～5", "items": [{"core": false, "text": "② 香蕉搖搖・左右搖"}, {"core": false, "text": "③ 雙手舉高・揮一揮"}, {"core": true, "text": "④ 左右踢踢・搖搖手"}, {"core": false, "text": "⑤ 大 Y 手・Hoo～"}], "video": "media/clips/prac_B1_full.mp4", "poster": "media/clips/poster_prac_B1_full.jpg", "durationLabel": "約 17 秒", "burned": false, "cues": [{"s": 0.0, "e": 2.4, "badge": "動作提示", "text": "【預備】腳打開、膝蓋彈一彈"}, {"s": 2.4, "e": 6.3, "badge": "動作提示", "text": "② 香蕉搖搖：左右搖"}, {"s": 6.3, "e": 8.9, "badge": "動作提示", "text": "③ 雙手舉高・揮一揮"}, {"s": 8.9, "e": 13.3, "badge": "動作提示", "text": "④ 左右踢踢・搖搖手"}, {"s": 13.3, "e": 16.5, "badge": "動作提示", "text": "⑤ 大 Y 手：Hoo～"}], "navTitle": "合練 6：香蕉恰恰・副歌 1（原速過關）"}, {"type": "practice", "group": "prac_slow", "badge": "0.8 倍慢速暖身", "title": "香蕉恰恰・副歌 2（慢速暖身）", "progress": "合練 7 / 10", "pracNum": 7, "pracTotal": 10, "listTitle": "副歌 2：動作 6～8＋踢踢", "items": [{"core": false, "text": "⑥ 小火車・向前衝"}, {"core": false, "text": "⑦ 單腳踢・小翅膀手"}, {"core": false, "text": "⑧ 扭扭腰・Yeah！"}, {"core": true, "text": "④ 左右踢踢（再一次）"}], "video": "media/clips/prac_B2_slow.mp4", "poster": "media/clips/poster_prac_B2_slow.jpg", "durationLabel": "約 22 秒", "burned": false, "cues": [{"s": 0.0, "e": 4.62, "badge": "動作提示", "text": "⑥ 小火車：向前衝"}, {"s": 4.62, "e": 8.75, "badge": "動作提示", "text": "⑦ 單腳踢・小翅膀手"}, {"s": 8.75, "e": 14.25, "badge": "動作提示", "text": "⑧ 扭扭腰：Yeah！"}, {"s": 14.25, "e": 17.5, "badge": "動作提示", "text": "【預備】併腳站好"}, {"s": 17.5, "e": 21.25, "badge": "動作提示", "text": "④ 左右踢踢（再一次）"}, {"s": 21.25, "e": 21.5, "badge": "動作提示", "text": "副歌：把學過的動作再跳一次！"}], "navTitle": "合練 7：香蕉恰恰・副歌 2（慢速暖身）"}, {"type": "practice", "group": "prac_full", "badge": "1.0 倍原速挑戰", "title": "香蕉恰恰・副歌 2（原速過關）", "progress": "合練 8 / 10", "pracNum": 8, "pracTotal": 10, "listTitle": "副歌 2：動作 6～8＋踢踢", "items": [{"core": false, "text": "⑥ 小火車・向前衝"}, {"core": false, "text": "⑦ 單腳踢・小翅膀手"}, {"core": false, "text": "⑧ 扭扭腰・Yeah！"}, {"core": true, "text": "④ 左右踢踢（再一次）"}], "video": "media/clips/prac_B2_full.mp4", "poster": "media/clips/poster_prac_B2_full.jpg", "durationLabel": "約 17 秒", "burned": false, "cues": [{"s": 0.0, "e": 3.7, "badge": "動作提示", "text": "⑥ 小火車：向前衝"}, {"s": 3.7, "e": 7.0, "badge": "動作提示", "text": "⑦ 單腳踢・小翅膀手"}, {"s": 7.0, "e": 11.4, "badge": "動作提示", "text": "⑧ 扭扭腰：Yeah！"}, {"s": 11.4, "e": 14.0, "badge": "動作提示", "text": "【預備】併腳站好"}, {"s": 14.0, "e": 17.0, "badge": "動作提示", "text": "④ 左右踢踢（再一次）"}, {"s": 17.0, "e": 17.2, "badge": "動作提示", "text": "副歌：把學過的動作再跳一次！"}], "navTitle": "合練 8：香蕉恰恰・副歌 2（原速過關）"}, {"type": "practice", "group": "prac_slow", "badge": "0.8 倍慢速暖身", "title": "香蕉恰恰・完整版（慢速暖身）", "progress": "合練 9 / 10", "pracNum": 9, "pracTotal": 10, "listTitle": "全曲：動作 1～9", "items": [{"core": false, "text": "① 屋頂手：BA-NA-NA"}, {"core": false, "text": "② 香蕉搖搖 → ③ 舉手揮揮"}, {"core": true, "text": "④ 左右踢踢 → ⑤ 大 Y 手"}, {"core": false, "text": "⑥ 小火車 → ⑦ 單腳踢"}, {"core": false, "text": "⑧ 扭扭腰 → 副歌再跳一次"}, {"core": true, "text": "⑨ 結尾：蹲下擺姿勢"}], "video": "media/clips/prac_B3_slow.mp4", "poster": "media/clips/poster_prac_B3_slow.jpg", "durationLabel": "約 2 分 50 秒", "burned": false, "cues": [{"s": 0.0, "e": 2.25, "badge": "動作提示", "text": "【預備】雙手插腰、站好位置"}, {"s": 2.25, "e": 4.38, "badge": "動作提示", "text": "① 屋頂手：BA-NA-NA"}, {"s": 4.38, "e": 7.5, "badge": "動作提示", "text": "歡呼 CHA！CHA！（看波羅羅）"}, {"s": 7.5, "e": 10.0, "badge": "動作提示", "text": "往前走 4 步、準備唱歌"}, {"s": 10.0, "e": 35.0, "badge": "動作提示", "text": "歌唱段：看畫面輕輕搖一搖"}, {"s": 35.0, "e": 38.75, "badge": "動作提示", "text": "爸爸也～：手在臉旁搖一搖"}, {"s": 38.75, "e": 57.5, "badge": "動作提示", "text": "歌唱段：看畫面輕輕搖一搖"}, {"s": 57.5, "e": 60.5, "badge": "動作提示", "text": "【預備】腳打開、膝蓋彈一彈"}, {"s": 60.5, "e": 65.38, "badge": "動作提示", "text": "② 香蕉搖搖：左右搖"}, {"s": 65.38, "e": 68.62, "badge": "動作提示", "text": "③ 雙手舉高・揮一揮"}, {"s": 68.62, "e": 74.13, "badge": "動作提示", "text": "④ 左右踢踢・搖搖手"}, {"s": 74.13, "e": 78.12, "badge": "動作提示", "text": "⑤ 大 Y 手：Hoo～"}, {"s": 78.12, "e": 95.0, "badge": "動作提示", "text": "歌唱段：看畫面輕輕搖一搖"}, {"s": 95.0, "e": 99.62, "badge": "動作提示", "text": "⑥ 小火車：向前衝"}, {"s": 99.62, "e": 103.75, "badge": "動作提示", "text": "⑦ 單腳踢・小翅膀手"}, {"s": 103.75, "e": 109.25, "badge": "動作提示", "text": "⑧ 扭扭腰：Yeah！"}, {"s": 109.25, "e": 112.5, "badge": "動作提示", "text": "【預備】併腳站好"}, {"s": 112.5, "e": 116.25, "badge": "動作提示", "text": "④ 左右踢踢（再一次）"}, {"s": 116.25, "e": 161.88, "badge": "動作提示", "text": "副歌：把學過的動作再跳一次！"}, {"s": 161.88, "e": 170.12, "badge": "動作提示", "text": "⑨ 結尾：蹲下擺姿勢！"}], "navTitle": "合練 9：香蕉恰恰・完整版（慢速暖身）"}, {"type": "practice", "group": "prac_full", "badge": "1.0 倍原速挑戰", "title": "香蕉恰恰・完整版（原速挑戰）", "progress": "合練 10 / 10", "pracNum": 10, "pracTotal": 10, "listTitle": "全曲：動作 1～9", "items": [{"core": false, "text": "① 屋頂手：BA-NA-NA"}, {"core": false, "text": "② 香蕉搖搖 → ③ 舉手揮揮"}, {"core": true, "text": "④ 左右踢踢 → ⑤ 大 Y 手"}, {"core": false, "text": "⑥ 小火車 → ⑦ 單腳踢"}, {"core": false, "text": "⑧ 扭扭腰 → 副歌再跳一次"}, {"core": true, "text": "⑨ 結尾：蹲下擺姿勢"}], "video": "media/clips/prac_B3_full.mp4", "poster": "media/clips/poster_prac_B3_full.jpg", "durationLabel": "約 2 分 16 秒", "burned": false, "cues": [{"s": 0.0, "e": 1.8, "badge": "動作提示", "text": "【預備】雙手插腰、站好位置"}, {"s": 1.8, "e": 3.5, "badge": "動作提示", "text": "① 屋頂手：BA-NA-NA"}, {"s": 3.5, "e": 6.0, "badge": "動作提示", "text": "歡呼 CHA！CHA！（看波羅羅）"}, {"s": 6.0, "e": 8.0, "badge": "動作提示", "text": "往前走 4 步、準備唱歌"}, {"s": 8.0, "e": 28.0, "badge": "動作提示", "text": "歌唱段：看畫面輕輕搖一搖"}, {"s": 28.0, "e": 31.0, "badge": "動作提示", "text": "爸爸也～：手在臉旁搖一搖"}, {"s": 31.0, "e": 46.0, "badge": "動作提示", "text": "歌唱段：看畫面輕輕搖一搖"}, {"s": 46.0, "e": 48.4, "badge": "動作提示", "text": "【預備】腳打開、膝蓋彈一彈"}, {"s": 48.4, "e": 52.3, "badge": "動作提示", "text": "② 香蕉搖搖：左右搖"}, {"s": 52.3, "e": 54.9, "badge": "動作提示", "text": "③ 雙手舉高・揮一揮"}, {"s": 54.9, "e": 59.3, "badge": "動作提示", "text": "④ 左右踢踢・搖搖手"}, {"s": 59.3, "e": 62.5, "badge": "動作提示", "text": "⑤ 大 Y 手：Hoo～"}, {"s": 62.5, "e": 76.0, "badge": "動作提示", "text": "歌唱段：看畫面輕輕搖一搖"}, {"s": 76.0, "e": 79.7, "badge": "動作提示", "text": "⑥ 小火車：向前衝"}, {"s": 79.7, "e": 83.0, "badge": "動作提示", "text": "⑦ 單腳踢・小翅膀手"}, {"s": 83.0, "e": 87.4, "badge": "動作提示", "text": "⑧ 扭扭腰：Yeah！"}, {"s": 87.4, "e": 90.0, "badge": "動作提示", "text": "【預備】併腳站好"}, {"s": 90.0, "e": 93.0, "badge": "動作提示", "text": "④ 左右踢踢（再一次）"}, {"s": 93.0, "e": 129.5, "badge": "動作提示", "text": "副歌：把學過的動作再跳一次！"}, {"s": 129.5, "e": 136.1, "badge": "動作提示", "text": "⑨ 結尾：蹲下擺姿勢！"}], "navTitle": "合練 10：香蕉恰恰・完整版（原速挑戰）"}, {"type": "finale", "group": "ice", "navTitle": "收尾：太棒了！大成功！"}];
+const IDX = {"divA": 2, "A1": 3, "A2": 4, "A3": 5, "A4": 6, "A5": 7, "A6": 8, "A7": 9, "A8": 10, "divB": 11, "B1": 12, "B2": 13, "B3": 14, "B4": 15, "B5": 16, "B6": 17, "B7": 18, "B8": 19, "B9": 20, "divP": 21, "prac_A1_slow": 22, "prac_A1_full": 23, "prac_A2_slow": 24, "prac_A2_full": 25, "prac_B1_slow": 26, "prac_B1_full": 27, "prac_B2_slow": 28, "prac_B2_full": 29, "prac_B3_slow": 30, "prac_B3_full": 31, "finale": 32};
+const ROAD = [{"g": "ice", "t": "冰原漂移舞 ①", "sub": "喜德帶你前後左右", "items": [{"txt": "1. 往前兩步・喜德的表情", "idx": 3}, {"txt": "2. 往後退兩步・喜德的表情", "idx": 4}, {"txt": "3. 往左踏・漂～移～", "idx": 5}, {"txt": "4. 往右踏・再漂～移～", "idx": 6}]}, {"g": "ice", "t": "冰原漂移舞 ②", "sub": "交叉、跳跳、轉身", "items": [{"txt": "5. 腳交叉・學學蠻尼", "idx": 7}, {"txt": "6. 再交叉・變成蠻尼", "idx": 8}, {"txt": "7. 跳！跳！扭扭手臂", "idx": 9}, {"txt": "8. 學阿嬤轉身・驚落去", "idx": 10}]}, {"g": "banana", "t": "香蕉恰恰 ①", "sub": "屋頂手到大 Y 手", "items": [{"txt": "1. 屋頂手・BA-NA-NA", "idx": 12}, {"txt": "2. 香蕉搖搖・左右搖", "idx": 13}, {"txt": "3. 雙手舉高・揮一揮", "idx": 14}, {"txt": "4. 左右踢踢・搖搖手", "idx": 15}, {"txt": "5. 大 Y 手・Hoo～", "idx": 16}]}, {"g": "banana", "t": "香蕉恰恰 ②", "sub": "火車、單腳踢、結尾", "items": [{"txt": "6. 小火車・向前衝", "idx": 17}, {"txt": "7. 單腳踢・小翅膀手", "idx": 18}, {"txt": "8. 扭扭腰・Yeah！", "idx": 19}, {"txt": "9. 蹲下・OKAY 擺姿勢！", "idx": 20}]}];
+let currentIndex = 0, mirrorEnabled = false, currentVideoEl = null;
+
+function setThemeVars(g) {
+  const r = document.getElementById("slideRoot");
+  r.style.setProperty("--theme-main", `var(--${g}-main)`);
+  r.style.setProperty("--theme-accent", `var(--${g}-accent)`);
+  r.style.setProperty("--theme-soft", `var(--${g}-soft)`);
+}
+function goTo(i) {
+  if (i < 0 || i >= SLIDES.length) return;
+  if (currentVideoEl) { try { currentVideoEl.pause(); } catch (e) {} currentVideoEl = null; }
+  currentIndex = i; render();
+}
+function openLightbox(src) { document.getElementById("lightboxImg").src = src; document.getElementById("lightboxModal").classList.add("open"); }
+
+function renderVideoBlock(s) {
+  const loop = Boolean(s.defaultLoop);
+  const note = s.type === "move"
+    ? `預設影片為「${s.baseSpeedLabel}」・點影片畫面即可播放／暫停，不會誤換頁`
+    : `上方橫幅會即時顯示現在跳到哪一招（${s.durationLabel}）・可隨時重播或開啟循環練習`;
+  const first = s.cues && s.cues.length ? s.cues[0] : { badge: "動作提示", text: s.title };
+  return `
+    <div class="right-col">
+      <div>
+        <div class="cue-bar"><span class="cue-badge" id="cueBadge">${first.badge}</span><span class="cue-text" id="cueText">${first.text}</span></div>
+        <div class="vid-shell ${mirrorEnabled ? "mirrored" : ""} ${s.burned ? "has-burned" : ""}" id="vidShell">
+          <video id="mainVideo" src="${s.video}" poster="${s.poster}" playsinline preload="metadata" ${loop ? "loop" : ""}></video>
+          <div class="cap-cover" id="capCover">${first.text}</div>
+        </div>
+      </div>
+      <div class="ctrl-bar">
+        <button class="cbtn play-main" id="btnPlayPause">▶ 播放示範</button>
+        <button class="cbtn" id="btnReplay">↺ 重播這一段</button>
+        <button class="cbtn ${loop ? "active-green" : ""}" id="btnLoop">🔁 循環：${loop ? "開" : "關"}</button>
+        <div class="spd-group" title="調整播放速度">
+          <button class="spd-btn" data-rate="0.8">🐢 再慢一點</button>
+          <button class="spd-btn active" data-rate="1.0">標準</button>
+          <button class="spd-btn" data-rate="1.2">稍快</button>
+        </div>
+        <button class="cbtn ${mirrorEnabled ? "active-purple" : ""}" id="btnMirror">🪞 鏡像：${mirrorEnabled ? "開" : "關"}</button>
+      </div>
+      <div class="ctrl-note">${note}</div>
+    </div>`;
+}
+
+function bindVideoControls(s) {
+  const vid = document.getElementById("mainVideo");
+  if (!vid) return;
+  currentVideoEl = vid;
+  const $ = (id) => document.getElementById(id);
+  const btnPlay = $("btnPlayPause"), btnLoop = $("btnLoop"), btnMirror = $("btnMirror"), shell = $("vidShell");
+  const sync = () => { btnPlay.textContent = vid.paused ? "▶ 播放示範" : "⏸ 暫停"; };
+  const toggle = () => { if (vid.paused) vid.play().catch(() => {}); else vid.pause(); };
+  vid.addEventListener("click", toggle);
+  ["play", "pause", "ended"].forEach((ev) => vid.addEventListener(ev, sync));
+  btnPlay.addEventListener("click", toggle);
+  $("btnReplay").addEventListener("click", () => { vid.currentTime = 0; vid.play().catch(() => {}); });
+  btnLoop.addEventListener("click", () => {
+    vid.loop = !vid.loop;
+    btnLoop.classList.toggle("active-green", vid.loop);
+    btnLoop.textContent = `🔁 循環：${vid.loop ? "開" : "關"}`;
+  });
+  btnMirror.addEventListener("click", () => {
+    mirrorEnabled = !mirrorEnabled;
+    shell.classList.toggle("mirrored", mirrorEnabled);
+    btnMirror.classList.toggle("active-purple", mirrorEnabled);
+    btnMirror.textContent = `🪞 鏡像：${mirrorEnabled ? "開" : "關"}`;
+  });
+  document.querySelectorAll(".spd-btn").forEach((b) => b.addEventListener("click", () => {
+    vid.playbackRate = parseFloat(b.dataset.rate);
+    document.querySelectorAll(".spd-btn").forEach((x) => x.classList.remove("active"));
+    b.classList.add("active");
+  }));
+  if (s.cues && s.cues.length) {
+    vid.addEventListener("timeupdate", () => {
+      const t = vid.currentTime;
+      let hit = s.cues[0];
+      for (const c of s.cues) { if (t >= c.s && t <= c.e + 0.15) { hit = c; break; } }
+      $("cueBadge").textContent = hit.badge;
+      $("cueText").textContent = hit.text;
+      $("capCover").textContent = hit.text;
+    });
+  }
+}
+
+function render() {
+  const s = SLIDES[currentIndex];
+  const root = document.getElementById("slideRoot");
+  setThemeVars(s.group || "ice");
+  root.className = "slide" + (["cover", "divider", "finale"].includes(s.type) ? " dark" : "");
+
+  if (s.type === "cover") {
+    root.innerHTML = `
+      <div class="hero-layout">
+        <div>
+          <div class="hero-badge">慢步調動作分解・互動點播練習版</div>
+          <h1 class="hero-h1">115 大會舞</h1>
+          <div class="hero-sub">冰原漂移舞（8 招）＋ 香蕉恰恰（9 招）</div>
+          <div class="hero-card" onclick="goTo(IDX.divA)">
+            <div class="hero-num">1</div>
+            <div><h3>第一章：喜德的「冰原漂移舞」</h3><p>8 個動作逐一慢速分解，畫面自帶中文口訣，跟著唸就會跳</p></div>
+          </div>
+          <div class="hero-card" onclick="goTo(IDX.divB)">
+            <div class="hero-num">2</div>
+            <div><h3>第二章：Pororo「香蕉恰恰」</h3><p>9 個動作逐一分解，口訣由老師版自編，再跟著音樂合練</p></div>
+          </div>
+          <div class="hero-card blue" onclick="goTo(IDX.divP)">
+            <div class="hero-num">3</div>
+            <div><h3>音樂合練（慢速暖身 → 原速過關）</h3><p>分段練習，最後挑戰完整版</p></div>
+          </div>
+          <div class="hero-actions">
+            <button class="big-cta primary" onclick="goTo(1)">▶ 開始上課（看兩支舞地圖）</button>
+            <button class="big-cta secondary" onclick="goTo(IDX.divP)">🎵 直接進音樂合練</button>
+          </div>
+        </div>
+        <div class="hero-img-box">
+          <img src="media/stills/hero_cover_ice.jpg" alt="喜德">
+          <img src="media/stills/hero_cover_banana.jpg" alt="香蕉恰恰">
+          <div class="hero-img-cap">大家一起開心動一動！</div>
+        </div>
+      </div>`;
+  } else if (s.type === "roadmap") {
+    root.innerHTML = `
+      <div class="hdr"><div class="hdr-pill">兩支舞地圖</div><div class="hdr-title">點任何一招，直接進入分解練習！</div><div class="hdr-prog">共 17 招</div></div>
+      <div class="roadmap-body">
+        <div class="tip-banner">第一章是喜德的冰原漂移舞（8 招），第二章是 Pororo 香蕉恰恰（9 招）。先慢後快，一招一招練！</div>
+        <div class="rm-grid">
+          ${ROAD.map(c => `
+            <div class="rm-col" style="--c-main:var(--${c.g}-main);--c-soft:var(--${c.g}-soft);">
+              <div class="rm-col-hdr"><h3>${c.t}</h3><p>${c.sub}</p></div>
+              <div class="rm-col-list">${c.items.map(it => `<div class="rm-item" onclick="goTo(${it.idx})">${it.txt}</div>`).join("")}</div>
+            </div>`).join("")}
+        </div>
+      </div>`;
+  } else if (s.type === "divider") {
+    root.innerHTML = `
+      <div class="div-body">
+        <div class="div-badge">${s.badge}</div>
+        <div class="div-title">${s.title}</div>
+        <div class="div-sub">${s.subtitle}</div>
+        <div class="div-cards">${s.bullets.map((b, i) => `<div class="div-card"><div class="div-num">${i + 1}</div><div class="div-card-txt">${b}</div></div>`).join("")}</div>
+      </div>`;
+  } else if (s.type === "move") {
+    const pct = Math.round((s.moveNum / s.moveTotal) * 100);
+    root.innerHTML = `
+      <div class="hdr"><div class="hdr-pill">${s.badge}</div><div class="hdr-title">${s.title}</div><div class="hdr-prog">${s.progress}</div></div>
+      <div class="move-body">
+        <div class="left-col">
+          <div class="steps-card">
+            ${s.steps.map((st, i) => `<div class="step-row" onclick="this.classList.toggle('done')"><div class="step-num">${i + 1}</div><div class="step-txt">${st}</div></div>`).join("")}
+            <div class="lyric-bar">🎵 口訣／歌詞提示：${s.lyric}</div>
+          </div>
+          <div class="stills-label">動作 1 → 2 → 3 分解照片（點照片可放大）</div>
+          <div class="stills-row">${s.stills.map(st => `<button class="still-btn" onclick="openLightbox('${st.img}')"><img src="${st.img}" alt="${st.label}"></button>`).join("")}</div>
+        </div>
+        ${renderVideoBlock(s)}
+      </div>
+      <div class="prog-track"><div class="prog-fill" style="width:${pct}%"></div></div>`;
+    bindVideoControls(s);
+  } else if (s.type === "practice") {
+    const pct = Math.round((s.pracNum / s.pracTotal) * 100);
+    root.innerHTML = `
+      <div class="hdr"><div class="hdr-pill">${s.badge}</div><div class="hdr-title">${s.title}</div><div class="hdr-prog">${s.progress}</div></div>
+      <div class="prac-body">
+        <div class="prac-card">
+          <div class="prac-card-hdr">${s.listTitle}</div>
+          <div class="prac-list">${s.items.map(it => `<div class="prac-item ${it.core ? "core" : ""}">${it.text}</div>`).join("")}</div>
+        </div>
+        ${renderVideoBlock(s)}
+      </div>
+      <div class="prog-track"><div class="prog-fill" style="width:${pct}%"></div></div>`;
+    bindVideoControls(s);
+  } else if (s.type === "finale") {
+    root.innerHTML = `
+      <div class="hero-layout">
+        <div>
+          <h1 class="hero-h1" style="color:var(--gold);">太棒了！大成功！</h1>
+          <div class="hero-sub">你已經學會 115 大會舞的兩支舞！</div>
+          <div class="hero-card" style="border-color:#22C55E;cursor:default;"><div class="hero-num" style="background:#22C55E;color:#fff;">✔</div><div><h3>學會喜德「冰原漂移舞」8 個動作</h3></div></div>
+          <div class="hero-card" style="border-color:#22C55E;cursor:default;"><div class="hero-num" style="background:#22C55E;color:#fff;">✔</div><div><h3>學會 Pororo「香蕉恰恰」9 個動作</h3></div></div>
+          <div class="hero-card" style="border-color:#22C55E;cursor:default;"><div class="hero-num" style="background:#22C55E;color:#fff;">✔</div><div><h3>跟著音樂完成慢速與原速大挑戰</h3></div></div>
+          <div class="hero-actions">
+            <button class="big-cta primary" onclick="goTo(IDX.prac_A2_full)">🔥 再跳一次冰原漂移舞</button>
+            <button class="big-cta secondary" onclick="goTo(IDX.prac_B3_full)">🍌 再跳一次香蕉恰恰</button>
+            <button class="big-cta secondary" onclick="goTo(0)">🏠 回到封面</button>
+          </div>
+        </div>
+        <div class="hero-img-box"><img src="media/stills/hero_bye.jpg" alt="蹲下擺姿勢"><div class="hero-img-cap">下次再一起跳！</div></div>
+      </div>`;
+  }
+  document.getElementById("pageInd").textContent = `${currentIndex + 1} / ${SLIDES.length}`;
+  document.getElementById("btnPrev").disabled = currentIndex === 0;
+  document.getElementById("btnNext").disabled = currentIndex === SLIDES.length - 1;
+}
+
+function openMenu() {
+  document.getElementById("menuTitle").textContent = `📋 快速跳轉目錄（共 ${SLIDES.length} 頁）`;
+  document.getElementById("menuGrid").innerHTML = SLIDES.map((s, i) => `
+    <button class="menu-item ${i === currentIndex ? "curr" : ""}" onclick="goTo(${i}); closeMenu();">
+      <span class="menu-pg">P${String(i + 1).padStart(2, "0")}</span><span>${s.navTitle}</span>
+    </button>`).join("");
+  document.getElementById("menuModal").classList.add("open");
+}
+function closeMenu() { document.getElementById("menuModal").classList.remove("open"); }
+document.getElementById("btnPrev").addEventListener("click", () => goTo(currentIndex - 1));
+document.getElementById("btnNext").addEventListener("click", () => goTo(currentIndex + 1));
+document.getElementById("btnMenu").addEventListener("click", openMenu);
+document.getElementById("btnCloseMenu").addEventListener("click", closeMenu);
+document.getElementById("menuModal").addEventListener("click", (e) => { if (e.target.id === "menuModal") closeMenu(); });
+document.getElementById("lightboxModal").addEventListener("click", () => document.getElementById("lightboxModal").classList.remove("open"));
+document.getElementById("btnFull").addEventListener("click", () => {
+  if (!document.fullscreenElement) document.documentElement.requestFullscreen().catch(() => {}); else document.exitFullscreen().catch(() => {});
+});
+document.addEventListener("keydown", (e) => {
+  if (document.getElementById("menuModal").classList.contains("open")) { if (e.key === "Escape") closeMenu(); return; }
+  if (document.getElementById("lightboxModal").classList.contains("open")) { if (e.key === "Escape") document.getElementById("lightboxModal").classList.remove("open"); return; }
+  if (e.key === "ArrowRight" || e.key === "PageDown") goTo(currentIndex + 1);
+  else if (e.key === "ArrowLeft" || e.key === "PageUp") goTo(currentIndex - 1);
+  else if (e.key === " " && currentVideoEl) { e.preventDefault(); document.getElementById("btnPlayPause").click(); }
+  else if ((e.key === "r" || e.key === "R") && currentVideoEl) document.getElementById("btnReplay").click();
+  else if ((e.key === "l" || e.key === "L") && currentVideoEl) document.getElementById("btnLoop").click();
+  else if ((e.key === "m" || e.key === "M") && currentVideoEl) document.getElementById("btnMirror").click();
+});
+render();
+</script>
+</body>
+</html>
